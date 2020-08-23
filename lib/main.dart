@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +9,7 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
+          title: Text('DiceSwap'),
           backgroundColor: Colors.red,
         ),
         body: DicePage(),
@@ -15,9 +18,53 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftImageNumber = 1;
+  int rightImageNumber = 2;
+
+  void addImageNumber() {
+    leftImageNumber = Random().nextInt(6) + 1;
+    rightImageNumber = Random().nextInt(6) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  addImageNumber();
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Image.asset('images/dice$leftImageNumber.png'),
+              ),
+            ),
+          ),
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  addImageNumber();
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Image.asset('images/dice$rightImageNumber.png'),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
