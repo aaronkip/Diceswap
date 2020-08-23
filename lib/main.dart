@@ -7,10 +7,10 @@ void main() {
   return runApp(
     MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.teal[200],
         appBar: AppBar(
           title: Text('DiceSwap'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.teal,
         ),
         body: DicePage(),
       ),
